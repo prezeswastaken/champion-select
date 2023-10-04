@@ -4,15 +4,14 @@ namespace App\Classes;
 
 class Result extends Question
 {
-    private $championName;
     public function __construct($championName)
     {
-        $this->championName = $championName;
+        $this->questionString = $championName;
 
     }
     public function getQuestionString()
     {
-        return $this->championName;
+        return $this->questionString;
     }
     public function getNewQuestionFromAnswer(Answer $answer)
     {
