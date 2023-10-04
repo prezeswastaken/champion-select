@@ -3,14 +3,10 @@
     <div class="rounded-xl p-5 h-64 w-1/3 flex-col justify-center">
         <div class="grid grid-cols-2 h-full w-full duration-300 ">
 
-@foreach ($answers as $answer)
-    <button wire:click="handleClick('{{ $answer->getAnswerString() }}')"
-            class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">{{ $answer->getAnswerString() }}</button>
-@endforeach
-
-            <form wire:submit="submitAnswer">
-            </form>
-
+            <button wire:click="handleClick('{{ $answerA }}')"
+                class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">{{ $answerA }}</button>
+            <button wire:click="handleClick('{{ $answerB }}')"
+                class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">{{ $answerB }}</button>
         </div>
         <div>
         </div>
