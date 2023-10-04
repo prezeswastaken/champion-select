@@ -13,4 +13,13 @@ class MultipathQuestion extends Question
     {
         return $this->questionString;
     }
+    public function getNewQuestionFromAnswer(Answer $answer): Question
+    {
+        return $answer->getNextQuestion();
+    }
+
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
 }

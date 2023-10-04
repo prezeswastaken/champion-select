@@ -2,8 +2,15 @@
     <div class="text-3xl">{{ $questionString }}</div>
     <div class="rounded-xl p-5 h-64 w-1/3 flex-col justify-center">
         <div class="grid grid-cols-2 h-full w-full duration-300 ">
-            <button class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">Melee</button>
-            <button class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">Ranged</button>
+
+@foreach ($answers as $answer)
+    <button wire:click="handleClick('{{ $answer->getAnswerString() }}')"
+            class="text-center text-white flex justify-center items-center hover:text-orange-400 duration-300">{{ $answer->getAnswerString() }}</button>
+@endforeach
+
+            <form wire:submit="submitAnswer">
+            </form>
+
         </div>
         <div>
         </div>

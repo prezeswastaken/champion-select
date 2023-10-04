@@ -5,9 +5,11 @@ namespace App\Traits;
 use App\Classes\Answer;
 use App\Classes\MultipathQuestion;
 use App\Classes\Question;
+use App\Traits\ResultList;
 
 trait QuestionList
 {
+    use ResultList;
     public function getDamageTypeQuestion(): Question
     {
         $questionString = "What kind of damage do you wish to deal?";
@@ -25,11 +27,11 @@ trait QuestionList
     }
     public function getApRoleQuestion()
     {
-        dd('ApRoleQuestion');
+        return $this->getRyze();
     }
 
     public function getAdRoleQuestion()
     {
-        dd('AdRoleQuestion');
+        return $this->getRiven();
     }
 }

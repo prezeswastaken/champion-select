@@ -13,4 +13,8 @@ abstract class Question
     }
 
     abstract public function getQuestionString();
+
+    abstract public function getNewQuestionFromAnswer(Answer $answer);
+
+    abstract public function getAnswers();
 }
