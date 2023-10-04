@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Livewire\Main;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/main', Main::class);
+//Route::get('/main', [MainController::class, 'index']);
+//Route::post('/show', [MainController::class, 'show']);
