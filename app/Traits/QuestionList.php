@@ -13,14 +13,22 @@ trait QuestionList
     private $questionList = [];
     public function getQuestionList()
     {
+        $this->createResultList();
         $this->createQuestionList();
+
         return $this->questionList;
 
     }
+    private function createResultList()
+    {
+        $this->createSoraka();
+        $this->createKarma();
+        $this->createJanna();
+    }
     private function createQuestionList()
     {
-        $this->createHealerRoleQuestion();
-        $this->createShielderDamageQuestion();
+
+        // Questions
         $this->createShielderTypicalQuestion();
         $this->createShielderQuestion();
         $this->createMageQuestion();
@@ -29,27 +37,23 @@ trait QuestionList
         $this->createAdRoleQuestion();
         $this->createDamageTypeQuestion();
     }
-    private $healerQuestion;
-    public function createHealerRoleQuestion()
+
+    // Initialize Results
+    private function createSoraka()
     {
-        $questionString = "Soraka";
-
-
-        $answers = [];
-
-        $answer = new Answer('Healer', $this->getRyze());
-        $answers[] = $answer;
-        $answer = new Answer('Shielder', $this->getRyze());
-        $answers[] = $answer;
-
-
-        $questionToAdd = new MultipathQuestion($answers, $questionString);
-        $this->questionList[] = $questionToAdd;
-        $this->healerQuestion = $questionToAdd;
+        $this->questionList[] = $this->getSoraka();
+    }
+    private function createKarma()
+    {
+        $this->questionList[] = $this->getKarma();
+    }
+    private function createJanna()
+    {
+        $this->questionList[] = $this->getJanna();
     }
     public function createDamageTypeQuestion()
     {
-        $questionString = "What kind of damage do you wish to deal?";
+        $questionString = "What kind of damage do you want to deal?";
 
 
         $answers = [];
@@ -108,9 +112,9 @@ trait QuestionList
 
         $answers = [];
 
-        $answer = new Answer('Damage', $this->shielderDamageQuestion);
+        $answer = new Answer('Damage', $this->getKarma());
         $answers[] = $answer;
-        $answer = new Answer('Typical shielder', $this->shielderTypicalQuestion);
+        $answer = new Answer('Typical shielder', $this->getJanna());
         $answers[] = $answer;
 
 
@@ -136,33 +140,15 @@ trait QuestionList
         $this->questionList[] = $questionToAdd;
         $this->shielderTypicalQuestion = $questionToAdd;
     }
-    private $shielderDamageQuestion;
-    public function createShielderDamageQuestion()
-    {
-        $questionString = "Karma is for you";
-
-
-        $answers = [];
-
-        $answer = new Answer('Damage', $this->getRyze());
-        $answers[] = $answer;
-        $answer = new Answer('Tank', $this->getRyze());
-        $answers[] = $answer;
-
-
-        $questionToAdd = new MultipathQuestion($answers, $questionString);
-        $this->questionList[] = $questionToAdd;
-        $this->shielderDamageQuestion = $questionToAdd;
-    }
     private $supportRoleQuestion;
     public function createSupportRoleQuestion()
     {
-        $questionString = "Do you want to shielder or healer?";
+        $questionString = "Do you want to be shielder or healer?";
 
 
         $answers = [];
 
-        $answer = new Answer('Healer', $this->healerQuestion);
+        $answer = new Answer('Healer', $this->getSoraka());
         $answers[] = $answer;
         $answer = new Answer('Shielder', $this->shielderQuestion);
         $answers[] = $answer;

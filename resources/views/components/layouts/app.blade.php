@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div >
+<div class="bg-black min-h-screen h-full">
     {{ $slot }}
 </div>
 </body>
