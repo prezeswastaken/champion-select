@@ -48,6 +48,7 @@ class Main extends Component
 
             //$this->question = $answeredQuestion->getAnswers();
             $nextQuestionString = $answeredQuestion->getAnswers()[0]->getNextQuestion()->getQuestionString();
+            //dd($nextQuestionString);
             $question = $this->getQuestionByQuestionString($nextQuestionString);
             $this->question = $question;
             $this->questionString = $this->question->getQuestionString();
@@ -57,7 +58,21 @@ class Main extends Component
 
             //dd('A was answered');
         } elseif ($answerString == $answerB) {
-            dd('B was answered');
+            $nextQuestionString = $answeredQuestion->getAnswers()[1]->getNextQuestion()->getQuestionString();
+            //dd($nextQuestionString);
+            $question = $this->getQuestionByQuestionString($nextQuestionString);
+            //dd($question);
+
+
+            //dd($question);
+            //dd($this->getQuestionByQuestionString($nextQuestionString));
+
+
+            $this->question = $question;
+            $this->questionString = $this->question->getQuestionString();
+            $this->answers = $this->question->getAnswers();
+            $this->answerA = $this->answers[0]->getAnswerString();
+            $this->answerB = $this->answers[1]->getAnswerString();
         }
 
 

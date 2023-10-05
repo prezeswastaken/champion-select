@@ -19,10 +19,33 @@ trait QuestionList
     }
     private function createQuestionList()
     {
+        $this->createHealerRoleQuestion();
+        $this->createShielderDamageQuestion();
+        $this->createShielderTypicalQuestion();
+        $this->createShielderQuestion();
+        $this->createMageQuestion();
         $this->createSupportRoleQuestion();
         $this->createApRoleQuestion();
         $this->createAdRoleQuestion();
         $this->createDamageTypeQuestion();
+    }
+    private $healerQuestion;
+    public function createHealerRoleQuestion()
+    {
+        $questionString = "Soraka";
+
+
+        $answers = [];
+
+        $answer = new Answer('Healer', $this->getRyze());
+        $answers[] = $answer;
+        $answer = new Answer('Shielder', $this->getRyze());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->healerQuestion = $questionToAdd;
     }
     public function createDamageTypeQuestion()
     {
@@ -51,13 +74,85 @@ trait QuestionList
 
         $answer = new Answer('Support', $this->supportRoleQuestion);
         $answers[] = $answer;
-        $answer = new Answer('Mage', $this->getRyze());
+        $answer = new Answer('Mage', $this->mageQuestion);
         $answers[] = $answer;
 
 
         $questionToAdd = new MultipathQuestion($answers, $questionString);
         $this->questionList[] = $questionToAdd;
         $this->apRoleQuestion = $questionToAdd;
+    }
+    private $mageQuestion;
+    public function createMageQuestion()
+    {
+        $questionString = "What range do you prefer?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Short range', $this->getRyze());
+        $answers[] = $answer;
+        $answer = new Answer('Long range', $this->getRyze());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->mageQuestion = $questionToAdd;
+    }
+    private $shielderQuestion;
+    public function createShielderQuestion()
+    {
+        $questionString = "Do you want to be able to deal some damage, or just be a good shielder?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Damage', $this->shielderDamageQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('Typical shielder', $this->shielderTypicalQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->shielderQuestion= $questionToAdd;
+    }
+    private $shielderTypicalQuestion;
+    public function createShielderTypicalQuestion()
+    {
+        $questionString = "Janna is for you";
+
+
+        $answers = [];
+
+        $answer = new Answer('Damage', $this->getRyze());
+        $answers[] = $answer;
+        $answer = new Answer('Tank', $this->getRyze());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->shielderTypicalQuestion = $questionToAdd;
+    }
+    private $shielderDamageQuestion;
+    public function createShielderDamageQuestion()
+    {
+        $questionString = "Karma is for you";
+
+
+        $answers = [];
+
+        $answer = new Answer('Damage', $this->getRyze());
+        $answers[] = $answer;
+        $answer = new Answer('Tank', $this->getRyze());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->shielderDamageQuestion = $questionToAdd;
     }
     private $supportRoleQuestion;
     public function createSupportRoleQuestion()
@@ -67,9 +162,9 @@ trait QuestionList
 
         $answers = [];
 
-        $answer = new Answer('Healer', $this->getRyze());
+        $answer = new Answer('Healer', $this->healerQuestion);
         $answers[] = $answer;
-        $answer = new Answer('Shielder', $this->getRyze());
+        $answer = new Answer('Shielder', $this->shielderQuestion);
         $answers[] = $answer;
 
 
