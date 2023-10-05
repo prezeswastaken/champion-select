@@ -43,37 +43,22 @@ class Main extends Component
         $answeredQuestion = $this->getQuestionByQuestionString($this->questionString);
         $answerA = $answeredQuestion->getAnswers()[0]->getAnswerString();
         $answerB = $answeredQuestion->getAnswers()[1]->getAnswerString();
-        //dd($answerB);
+        $nextQuestionString = "";
+
         if ($answerString == $answerA) {
 
-            //$this->question = $answeredQuestion->getAnswers();
             $nextQuestionString = $answeredQuestion->getAnswers()[0]->getNextQuestion()->getQuestionString();
-            //dd($nextQuestionString);
-            $question = $this->getQuestionByQuestionString($nextQuestionString);
-            $this->question = $question;
-            $this->questionString = $this->question->getQuestionString();
-            $this->answers = $this->question->getAnswers();
-            $this->answerA = $this->answers[0]->getAnswerString();
-            $this->answerB = $this->answers[1]->getAnswerString();
 
-            //dd('A was answered');
         } elseif ($answerString == $answerB) {
             $nextQuestionString = $answeredQuestion->getAnswers()[1]->getNextQuestion()->getQuestionString();
-            //dd($nextQuestionString);
-            $question = $this->getQuestionByQuestionString($nextQuestionString);
-            //dd($question);
-
-
-            //dd($question);
-            //dd($this->getQuestionByQuestionString($nextQuestionString));
-
-
-            $this->question = $question;
-            $this->questionString = $this->question->getQuestionString();
-            $this->answers = $this->question->getAnswers();
-            $this->answerA = $this->answers[0]->getAnswerString();
-            $this->answerB = $this->answers[1]->getAnswerString();
         }
+
+        $question = $this->getQuestionByQuestionString($nextQuestionString);
+        $this->question = $question;
+        $this->questionString = $this->question->getQuestionString();
+        $this->answers = $this->question->getAnswers();
+        $this->answerA = $this->answers[0]->getAnswerString();
+        $this->answerB = $this->answers[1]->getAnswerString();
 
 
     }
