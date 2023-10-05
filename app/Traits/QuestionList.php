@@ -19,16 +19,18 @@ trait QuestionList
         return $this->questionList;
 
     }
+
+
     private function createResultList()
     {
         $this->createSoraka();
         $this->createKarma();
         $this->createJanna();
     }
+
     private function createQuestionList()
     {
 
-        // Questions
         $this->createShielderTypicalQuestion();
         $this->createShielderQuestion();
         $this->createMageQuestion();
@@ -38,7 +40,7 @@ trait QuestionList
         $this->createDamageTypeQuestion();
     }
 
-    // Initialize Results
+    // Create methods for result champions
     private function createSoraka()
     {
         $this->questionList[] = $this->getSoraka();
