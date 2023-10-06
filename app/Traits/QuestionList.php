@@ -13,6 +13,7 @@ trait QuestionList
     private $questionList = [];
     public function getQuestionList()
     {
+
         $this->createResultList();
         $this->createQuestionList();
 
@@ -23,16 +24,28 @@ trait QuestionList
 
     private function createResultList()
     {
+        $this->createPlaceHolder();
+        $this->createAnnie();
+        $this->createVictor();
         $this->createSoraka();
         $this->createKarma();
         $this->createJanna();
+        $this->createRyze();
+        $this->createCassiopeia();
+        $this->createXerath();
+        $this->createVelKoz();
     }
 
     private function createQuestionList()
     {
 
+
         $this->createShielderTypicalQuestion();
         $this->createShielderQuestion();
+        $this->createTankyMageQuestion();
+        $this->createDpsMageQuestion();
+        $this->createShortRangeQuestion();
+        $this->createLongRangeQuestion();
         $this->createMageQuestion();
         $this->createSupportRoleQuestion();
         $this->createApRoleQuestion();
@@ -41,6 +54,35 @@ trait QuestionList
     }
 
     // Create methods for result champions
+
+    private function createPlaceHolder()
+    {
+        $this->questionList[] = $this->getPlaceHolder();
+    }
+    private function createVelKoz()
+    {
+        $this->questionList[] = $this->getVelKoz();
+    }
+    private function createXerath()
+    {
+        $this->questionList[] = $this->getXerath();
+    }
+    private function createAnnie()
+    {
+        $this->questionList[] = $this->getAnnie();
+    }
+    private function createVictor()
+    {
+        $this->questionList[] = $this->getVictor();
+    }
+    private function createCassiopeia()
+    {
+        $this->questionList[] = $this->getCassiopeia();
+    }
+    private function createRyze()
+    {
+        $this->questionList[] = $this->getRyze();
+    }
     private function createSoraka()
     {
         $this->questionList[] = $this->getSoraka();
@@ -96,15 +138,87 @@ trait QuestionList
 
         $answers = [];
 
-        $answer = new Answer('Short range', $this->getRyze());
+        $answer = new Answer('Short range', $this->shortRangeQuestion);
         $answers[] = $answer;
-        $answer = new Answer('Long range', $this->getRyze());
+        $answer = new Answer('Long range', $this->longRangeQuestion);
         $answers[] = $answer;
 
 
         $questionToAdd = new MultipathQuestion($answers, $questionString);
         $this->questionList[] = $questionToAdd;
         $this->mageQuestion = $questionToAdd;
+    }
+    private $longRangeQuestion;
+    public function createLongRangeQuestion()
+    {
+        $questionString = "Do you have more than 50 IQ?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getXerath());
+        $answers[] = $answer;
+        $answer = new Answer('YYYYYYYGHGHGHGHHG', $this->getVelKoz());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->longRangeQuestion = $questionToAdd;
+    }
+    private $shortRangeQuestion;
+    public function createShortRangeQuestion()
+    {
+        $questionString = "What kind of mage do you want to be?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Tanky mage', $this->tankyMageQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('DPS mage', $this->dpsMageQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->shortRangeQuestion = $questionToAdd;
+    }
+    private $dpsMageQuestion;
+    public function createDpsMageQuestion()
+    {
+        $questionString = "Do you want to die in 2 seconds?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getAnnie());
+        $answers[] = $answer;
+        $answer = new Answer('No', $this->getVictor());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->dpsMageQuestion = $questionToAdd;
+    }
+    private $tankyMageQuestion;
+    public function createTankyMageQuestion()
+    {
+        $questionString = "Do you want to practice 10 hours a day to be good with you champion?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getRyze());
+        $answers[] = $answer;
+        $answer = new Answer('Nope', $this->getCassiopeia());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->tankyMageQuestion = $questionToAdd;
     }
     private $shielderQuestion;
     public function createShielderQuestion()
