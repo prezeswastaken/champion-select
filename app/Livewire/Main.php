@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Classes\Answer;
 use App\Classes\MultipathQuestion;
 use App\Classes\Question;
+use App\Classes\Result;
 use Livewire\Component;
 
 use App\Traits\QuestionList;
@@ -13,6 +14,10 @@ class Main extends Component
 {
     use QuestionList;
 
+
+    public $finished = false;
+    public $linkToImage = "";
+    public $description = "";
 
     public $questionString  = "";
     private Question $question;
@@ -27,13 +32,11 @@ class Main extends Component
     {
         $questions = $this->getQuestionList();
         $this->question = end($questions);
-        //dd($this->question);
 
         $this->questionString = $this->question->getQuestionString();
         $this->answers = $this->question->getAnswers();
         $this->answerA = $this->answers[0]->getAnswerString();
         $this->answerB = $this->answers[1]->getAnswerString();
-        //dd($this->getQuestionByQuestionString('Riven'));
     }
 
 
@@ -43,22 +46,36 @@ class Main extends Component
         $answeredQuestion = $this->getQuestionByQuestionString($this->questionString);
         $answerA = $answeredQuestion->getAnswers()[0]->getAnswerString();
         $answerB = $answeredQuestion->getAnswers()[1]->getAnswerString();
-        //dd($answerB);
+        $nextQuestionString = "";
+
         if ($answerString == $answerA) {
 
-            //$this->question = $answeredQuestion->getAnswers();
             $nextQuestionString = $answeredQuestion->getAnswers()[0]->getNextQuestion()->getQuestionString();
-            $question = $this->getQuestionByQuestionString($nextQuestionString);
+
+        } elseif ($answerString == $answerB) {
+            $nextQuestionString = $answeredQuestion->getAnswers()[1]->getNextQuestion()->getQuestionString();
+        }
+
+        $question = $this->getQuestionByQuestionString($nextQuestionString);
+
+        /** @var Result $question */
+        if ($question instanceof Result) {
+            $result = $question;
+            $this->questionString = $result->getQuestionString();
+
+            $this->finished = true;
+            $this->linkToImage = $result->getLinkToImage();
+            $this->description = $result->getDescription();
+
+            return;
+        } else {
             $this->question = $question;
             $this->questionString = $this->question->getQuestionString();
             $this->answers = $this->question->getAnswers();
             $this->answerA = $this->answers[0]->getAnswerString();
             $this->answerB = $this->answers[1]->getAnswerString();
-
-            //dd('A was answered');
-        } elseif ($answerString == $answerB) {
-            dd('B was answered');
         }
+
 
 
     }
