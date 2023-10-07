@@ -41,6 +41,12 @@ trait QuestionList
         $this->createCassiopeia();
         $this->createXerath();
         $this->createVelKoz();
+        $this->createMasterYi();
+        $this->createRiven();
+        $this->createMalphite();
+        $this->createSion();
+        $this->createSett();
+        $this->createGaren();
     }
 
     private function createQuestionList()
@@ -63,6 +69,12 @@ trait QuestionList
         $this->createAssasinQuestion();
         $this->createAdRoleQuestion();
         $this->createDamageTypeQuestion();
+        $this->createWarriorQuestion();
+        $this->createTypicalTankQuestion();
+        $this->createTankyAutoattackQuestion();
+        $this->createAutoAttackDamageQuestion();
+        $this->createAutoAttackQuestion();
+        $this->createEntryQuestion();
     }
 
     // Create methods for result champions
@@ -70,6 +82,30 @@ trait QuestionList
     private function createPlaceHolder()
     {
         $this->questionList[] = $this->getPlaceHolder();
+    }
+    private function createGaren()
+    {
+        $this->questionList[] = $this->getGaren();
+    }
+    private function createSett()
+    {
+        $this->questionList[] = $this->getSett();
+    }
+    private function createSion()
+    {
+        $this->questionList[] = $this->getSion();
+    }
+    private function createMalphite()
+    {
+        $this->questionList[] = $this->getMalphite();
+    }
+    private function createRiven()
+    {
+        $this->questionList[] = $this->getRiven();
+    }
+    private function createMasterYi()
+    {
+        $this->questionList[] = $this->getMasterYi();
     }
     private function createKhaZix()
     {
@@ -135,6 +171,26 @@ trait QuestionList
     {
         $this->questionList[] = $this->getJanna();
     }
+
+    private $entryQuestion;
+    public function createEntryQuestion()
+    {
+        $questionString = "Do you want to deal most of your damage with auto-attacks, or with spells?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Auto-attacks', $this->autoAttackQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('Spells', $this->damageTypeQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->damageTypeQuestion = $questionToAdd;
+    }
+    private $damageTypeQuestion;
     public function createDamageTypeQuestion()
     {
         $questionString = "What kind of damage do you want to deal?";
@@ -150,6 +206,7 @@ trait QuestionList
 
         $questionToAdd = new MultipathQuestion($answers, $questionString);
         $this->questionList[] = $questionToAdd;
+        $this->damageTypeQuestion = $questionToAdd;
     }
 
     private $apRoleQuestion;
@@ -444,6 +501,99 @@ trait QuestionList
         $questionToAdd = new MultipathQuestion($answers, $questionString);
         $this->questionList[] = $questionToAdd;
         $this->dpsAssasinQuestion = $questionToAdd;
+    }
+
+
+
+    private $autoAttackQuestion;
+    public function createAutoAttackQuestion()
+    {
+        $questionString = "Do you want to have lots of HP, or deal lots of damage?";
+
+
+        $answers = [];
+
+        $answer = new Answer('HP', $this->tankyAutoattackQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('Damage', $this->autoAttackDamageQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->autoAttackQuestion = $questionToAdd;
+    }
+    private $tankyAutoattackQuestion;
+    public function createTankyAutoattackQuestion()
+    {
+        $questionString = "Do you want to be a warrior, or a typical tank?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Warrior', $this->warriorQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('Typical tank', $this->typicalTankQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->tankyAutoattackQuestion = $questionToAdd;
+    }
+    private $warriorQuestion;
+    public function createWarriorQuestion()
+    {
+        $questionString = "What do you value more?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Good mobilty', $this->getGaren());
+        $answers[] = $answer;
+        $answer = new Answer('Good fighting potential', $this->getSett());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->warriorQuestion = $questionToAdd;
+    }
+    private $typicalTankQuestion;
+    public function createTypicalTankQuestion()
+    {
+        $questionString = "Do you like splitting from your team?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getSion());
+        $answers[] = $answer;
+        $answer = new Answer('No', $this->getMalphite());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->typicalTankQuestion = $questionToAdd;
+    }
+    private $autoAttackDamageQuestion;
+    public function createAutoAttackDamageQuestion()
+    {
+        $questionString = "Do you want your fights to be short and brutal, or long and epic?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Short and brutal', $this->getMasterYi());
+        $answers[] = $answer;
+        $answer = new Answer('Long and epic', $this->getRiven());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->autoAttackDamageQuestion = $questionToAdd;
     }
 
 

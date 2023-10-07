@@ -10,10 +10,6 @@ trait ResultList
     {
         return new Result("I can't believe you came here!", "https://i.pinimg.com/originals/ec/bc/ca/ecbcca858e30291003151c8c16b2d206.gif", "that's what she said");
     }
-    public function getRiven()
-    {
-        return new Result("Riven", "bbb", "ccc");
-    }
     public function getSoraka()
     {
         return new Result("Soraka", "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Soraka_0.jpg", "The Starchild");
@@ -121,6 +117,48 @@ trait ResultList
         $name = "Kha'zix";
         $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Khazix_0.jpg";
         $description = "the Voidreaver";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getRiven()
+    {
+        $name = "Riven";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Riven_0.jpg";
+        $description = "the Exile";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getMasterYi()
+    {
+        $name = "Master Yi";
+        $linkToImage = "https://www.lolporadnik.pl/wp-content/uploads/2020/12/master-yi.jpg";
+        $description = "the Wuju Bladesman";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getMalphite()
+    {
+        $name = "Malphite";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Malphite_0.jpg";
+        $description = "Shard of the Monolith";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getSion()
+    {
+        $name = "Sion";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sion_0.jpg";
+        $description = "The Undead Juggernaut";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getSett()
+    {
+        $name = "Sett";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sett_0.jpg";
+        $description = "the Boss";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getGaren()
+    {
+        $name = "Garen";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg";
+        $description = "The Might of Demacia";
         return new Result($name, $linkToImage, $description);
     }
 }
