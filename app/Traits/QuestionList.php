@@ -248,14 +248,14 @@ trait QuestionList
     private $longRangeQuestion;
     public function createLongRangeQuestion()
     {
-        $questionString = "Do you have more than 50 IQ?";
+        $questionString = "Do you have more than 1 eye?";
 
 
         $answers = [];
 
         $answer = new Answer('Yes', $this->getXerath());
         $answers[] = $answer;
-        $answer = new Answer('YYYYYYYGHGHGHGHHG', $this->getVelKoz());
+        $answer = new Answer('No', $this->getVelKoz());
         $answers[] = $answer;
 
 
