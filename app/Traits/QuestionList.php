@@ -25,6 +25,13 @@ trait QuestionList
     private function createResultList()
     {
         $this->createPlaceHolder();
+        $this->createKhaZix();
+        $this->createKayn();
+        $this->createPantheon();
+        $this->createPyke();
+        $this->createLeona();
+        $this->createTaric();
+        $this->createNautilus();
         $this->createAnnie();
         $this->createVictor();
         $this->createSoraka();
@@ -49,6 +56,11 @@ trait QuestionList
         $this->createMageQuestion();
         $this->createSupportRoleQuestion();
         $this->createApRoleQuestion();
+        $this->createCcChainQuestion();
+        $this->createTankyFrontlineQuestion();
+        $this->createSupportAssasinQuestion();
+        $this->createDpsAssasinQuestion();
+        $this->createAssasinQuestion();
         $this->createAdRoleQuestion();
         $this->createDamageTypeQuestion();
     }
@@ -58,6 +70,34 @@ trait QuestionList
     private function createPlaceHolder()
     {
         $this->questionList[] = $this->getPlaceHolder();
+    }
+    private function createKhaZix()
+    {
+        $this->questionList[] = $this->getKhaZix();
+    }
+    private function createKayn()
+    {
+        $this->questionList[] = $this->getKayn();
+    }
+    private function createPyke()
+    {
+        $this->questionList[] = $this->getPyke();
+    }
+    private function createPantheon()
+    {
+        $this->questionList[] = $this->getPantheon();
+    }
+    private function createLeona()
+    {
+        $this->questionList[] = $this->getLeona();
+    }
+    private function createNautilus()
+    {
+        $this->questionList[] = $this->getNautilus();
+    }
+    private function createTaric()
+    {
+        $this->questionList[] = $this->getTaric();
     }
     private function createVelKoz()
     {
@@ -299,9 +339,111 @@ trait QuestionList
     private $adRoleQuestion;
     public function createAdRoleQuestion()
     {
-        $questionToAdd = $adRoleQuestion = $this->getRiven();
+        $questionString = "Choose your prefered role";
+
+
+        $answers = [];
+
+        $answer = new Answer('Tanky frontline', $this->tankyFrontlineQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('Assasin', $this->assasinQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
         $this->questionList[] = $questionToAdd;
         $this->adRoleQuestion = $questionToAdd;
+    }
+    private $tankyFrontlineQuestion;
+    public function createTankyFrontlineQuestion()
+    {
+        $questionString = "Do you need strong heal and powerful shields?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getTaric());
+        $answers[] = $answer;
+        $answer = new Answer('No', $this->ccChainQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->tankyFrontlineQuestion = $questionToAdd;
+    }
+    private $ccChainQuestion;
+    public function createCcChainQuestion()
+    {
+        $questionString = "Do you want insane durability?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getLeona());
+        $answers[] = $answer;
+        $answer = new Answer('No', $this->getNautilus());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->ccChainQuestion= $questionToAdd;
+    }
+    private $assasinQuestion;
+    public function createAssasinQuestion()
+    {
+        $questionString = "Do you want to be support assasin, or do you to just kill everybody?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Support assasin', $this->supportAssasinQuestion);
+        $answers[] = $answer;
+        $answer = new Answer('JUST KILL THEM ALL!!!', $this->dpsAssasinQuestion);
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->assasinQuestion = $questionToAdd;
+    }
+    private $supportAssasinQuestion;
+    public function createSupportAssasinQuestion()
+    {
+        $questionString = "Do you need insane mobility?";
+
+
+        $answers = [];
+
+        $answer = new Answer('Yes', $this->getPantheon());
+        $answers[] = $answer;
+        $answer = new Answer('No', $this->getPyke());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->supportAssasinQuestion = $questionToAdd;
+    }
+
+    private $dpsAssasinQuestion;
+    public function createDpsAssasinQuestion()
+    {
+        $questionString = "Do you want to have some healing, or do you just care only about the damage?";
+
+
+        $answers = [];
+
+        $answer = new Answer('I want some healing', $this->getKayn());
+        $answers[] = $answer;
+        $answer = new Answer('DAMAGE IS ALL I WANT', $this->getKhaZix());
+        $answers[] = $answer;
+
+
+        $questionToAdd = new MultipathQuestion($answers, $questionString);
+        $this->questionList[] = $questionToAdd;
+        $this->dpsAssasinQuestion = $questionToAdd;
     }
 
 

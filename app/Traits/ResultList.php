@@ -69,9 +69,58 @@ trait ResultList
     }
     public function getVelKoz()
     {
-        $name = "Vel' Koz";
+        $name = "Vel'Koz";
         $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg";
         $description = "the Eye of the Void";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getNautilus()
+    {
+        $name = "Nautilus";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nautilus_0.jpg";
+        $description = "the Titan of the Depths";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getTaric()
+    {
+        $name = "Taric";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_0.jpg";
+        $description = "the Shield of Valoran";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getLeona()
+    {
+        $name = "Leona";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Leona_0.jpg";
+        $description = "the Radiant Dawn";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getPyke()
+    {
+        $name = "Pyke";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Pyke_0.jpg";
+        $description = "the Bloodharbor Ripper";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getPantheon()
+    {
+        $name = "Pantheon";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Pantheon_0.jpg";
+        $description = "the Unbreakable Spear";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getKayn()
+    {
+        $name = "Kayn";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kayn_0.jpg";
+        $description = "the Shadow Reaper";
+        return new Result($name, $linkToImage, $description);
+    }
+    public function getKhaZix()
+    {
+        $name = "Kha'zix";
+        $linkToImage = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Khazix_0.jpg";
+        $description = "the Voidreaver";
         return new Result($name, $linkToImage, $description);
     }
 }
